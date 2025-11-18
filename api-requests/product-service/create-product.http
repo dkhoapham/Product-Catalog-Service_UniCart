@@ -1,0 +1,13 @@
+### POST request of create a product
+POST http://localhost:4000/api
+Content-Type: application/json
+
+{
+  "productName": "iPhone 25 Extra Promax",
+  "productDescription": "A hypothetical iPhone",
+  "productPrice": "2999.99",
+  "productCategory": "Electronics",
+  "imageUrls": [
+  ]
+}
+###

@@ -1,10 +1,11 @@
-package com.uc.productcatalog_service.model2;
+package com.uc.productcatalog_service.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
+import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,8 +16,11 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private String id;
+
+    public Product() {
+        this.id = NanoIdUtils.randomNanoId();
+    }
 
     @NotNull
     @Size(min = 1, max = 255)
@@ -38,12 +42,8 @@ public class Product {
 
     //===Getter && Setter===\\
 
-    public UUID getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getName() {
