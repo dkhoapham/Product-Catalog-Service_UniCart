@@ -8,14 +8,12 @@ import com.uc.productcatalog_service.model.Product;
 import com.uc.productcatalog_service.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService { // business logic
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
@@ -39,12 +37,12 @@ public class ProductService { // business logic
         return productResponseDTOS;
     }
 
-    // GET product by ID
+    /* GET product by ID
     public ProductResponseDTO getProductById(String productId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ProductNotFoundException(productId));
         return ProductMapper.toDTO(product);
-    }
+    }*/
 
     // POST new product
     public ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO) {
@@ -53,14 +51,19 @@ public class ProductService { // business logic
     }
 
      // GET single product by ID
-    public ProductResponseDTO getById(String id) {
+    public ProductResponseDTO getById(String prefixedId) {
+        Integer id = Integer.parseInt(prefixedId.replace("prod_", ""));
         Product product = productRepository.findById(id)
-            .orElseThrow(() -> new ProductNotFoundException(id));
+            .orElseThrow(() -> new ProductNotFoundException(prefixedId));
         return ProductMapper.toDTO(product);
     }
 
     // GET batch of product by ids
-    public List<ProductResponseDTO> getBatchByIds(List<String> ids) {
+    public List<ProductResponseDTO> getBatchByIds(List<String> prefixedIds) {
+        List<Integer> ids = prefixedIds.stream()
+                .map(id -> Integer.parseInt(id.replace("prod_", "")))
+                .collect(Collectors.toList());
+
         List<Product> products = productRepository.findAllById(ids);
         return ProductMapper.toDTOs(products);
     }

@@ -46,24 +46,24 @@ public class ProductServiceTest {
         product.setPrice(new BigDecimal("19.99"));
         product.setCategory("Productivity");
 
-        when(productRepository.findById("11111111-1111-1111-1111-111111111111"))
+        when(productRepository.findById(1))
                 .thenReturn(Optional.of(product));
 
         ProductResponseDTO result =
-                productService.getById("11111111-1111-1111-1111-111111111111");
+                productService.getById("prod_1");
 
         assertEquals("TrackIt Planner", result.getProductName());
         assertEquals("Productivity", result.getProductCategory());
         verify(productRepository, times(1))
-                .findById("11111111-1111-1111-1111-111111111111");
+                .findById(1);
     }
 
     @Test
     void testGetById_Throws_WhenNotFound() {
-        when(productRepository.findById("99999999-9999-9999-9999-999999999999"))
+        when(productRepository.findById(2))
                 .thenReturn(Optional.empty());
 
         assertThrows(RuntimeException.class, () ->
-                productService.getById("99999999-9999-9999-9999-999999999999"));
+                productService.getById("prod_2"));
     }
 }

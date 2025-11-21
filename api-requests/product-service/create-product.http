@@ -6,7 +6,7 @@ Content-Type: application/json
   "productName": "iPhone 25 Extra Promax",
   "productDescription": "A hypothetical iPhone",
   "productPrice": "2999.99",
-  "productCategory": "",
+  "productCategory": "Electronics",
   "imageUrls": [
     "https://example.com/images/iPhone.png"
   ]
