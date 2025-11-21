@@ -7,6 +7,7 @@ import com.uc.productcatalog_service.mapper.ProductMapper;
 import com.uc.productcatalog_service.model.Product;
 import com.uc.productcatalog_service.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import java.util.UUID;
 
 import java.util.List;
 
@@ -48,4 +49,12 @@ public class ProductService { // business logic
         Product newProduct = productRepository.save(ProductMapper.toModel(productRequestDTO));
         return ProductMapper.toDTO(newProduct);
     }
+
+     // GET single product by ID
+    public ProductResponseDTO getById(String id) {
+    Product product = productRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+    return ProductMapper.toDTO(product);
+}
+    
 }
