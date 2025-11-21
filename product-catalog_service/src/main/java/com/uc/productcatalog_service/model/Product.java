@@ -25,12 +25,14 @@ public class Product {
     @Size(min = 1, max = 255)
     private String name;
 
+    @NotNull
     private String description;
 
     @NotNull
     @DecimalMin("0.0")
     private BigDecimal price;
 
+    @NotNull
     private String category;
 
     @ElementCollection
