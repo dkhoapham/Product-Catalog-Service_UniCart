@@ -2,12 +2,12 @@ package com.uc.productcatalog_service.service;
 
 import com.uc.productcatalog_service.dto.ProductRequestDTO;
 import com.uc.productcatalog_service.dto.ProductResponseDTO;
+import com.uc.productcatalog_service.exception.ProductNotFoundException;
 import com.uc.productcatalog_service.mapper.ProductMapper;
 import com.uc.productcatalog_service.model.Product;
 import com.uc.productcatalog_service.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,6 +34,13 @@ public class ProductService { // business logic
                                                                .map(ProductMapper::toDTO)
                                                                .toList();
         return productResponseDTOS;
+    }
+
+    // GET product by ID
+    public ProductResponseDTO getProductById(String productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+        return ProductMapper.toDTO(product);
     }
 
     // POST new product

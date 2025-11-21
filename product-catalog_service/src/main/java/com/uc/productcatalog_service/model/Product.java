@@ -10,7 +10,6 @@ import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.UUID;
 import java.util.List;
 
 @Entity
