@@ -1,21 +1,27 @@
 package com.uc.productcatalog_service.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
 public class ProductRequestDTO { //POST
 
-    @NotBlank (message = "Product Name required")
+    @NotBlank(message = "Product Name required")
+    @Size(min = 1, max = 255)
     private String productName;
 
+    @NotBlank(message = "Description of product required")
     private String productDescription;
 
     @NotBlank(message = "Product Price required")
     private String productPrice;
 
+    @NotBlank(message = "Category of product required")
     private String productCategory;
+
+    @NotEmpty(message = "Image/s of product required")
     private List<String> imageUrls;
 
 

@@ -8,6 +8,7 @@ Content-Type: application/json
   "productPrice": "2999.99",
   "productCategory": "Electronics",
   "imageUrls": [
+    "https://example.com/images/iPhone.png"
   ]
 }
 ###
