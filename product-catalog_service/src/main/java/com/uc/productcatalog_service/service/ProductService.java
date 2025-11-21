@@ -7,7 +7,9 @@ import com.uc.productcatalog_service.mapper.ProductMapper;
 import com.uc.productcatalog_service.model.Product;
 import com.uc.productcatalog_service.repository.ProductRepository;
 import org.springframework.stereotype.Service;
-import java.util.UUID;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 import java.util.List;
 
@@ -52,9 +54,14 @@ public class ProductService { // business logic
 
      // GET single product by ID
     public ProductResponseDTO getById(String id) {
-    Product product = productRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
-    return ProductMapper.toDTO(product);
-}
-    
+        Product product = productRepository.findById(id)
+            .orElseThrow(() -> new ProductNotFoundException(id));
+        return ProductMapper.toDTO(product);
+    }
+
+    // GET batch of product by ids
+    public List<ProductResponseDTO> getBatchByIds(List<String> ids) {
+        List<Product> products = productRepository.findAllById(ids);
+        return ProductMapper.toDTOs(products);
+    }
 }

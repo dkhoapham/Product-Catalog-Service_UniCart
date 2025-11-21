@@ -5,17 +5,25 @@ import com.uc.productcatalog_service.dto.ProductResponseDTO;
 import com.uc.productcatalog_service.model.Product;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductMapper {
     public static ProductResponseDTO toDTO(Product product) {
         ProductResponseDTO productDTO = new ProductResponseDTO();
-        productDTO.setProductId(product.getId());
+        productDTO.setProductId("prod_" + product.getId());
         productDTO.setProductName(product.getName());
         productDTO.setProductDescription(product.getDescription());
         productDTO.setProductPrice(product.getPrice().toString());
         productDTO.setProductCategory(product.getCategory());
         productDTO.setImageUrls(product.getImageUrls());
         return productDTO;
+    }
+
+    public static List<ProductResponseDTO> toDTOs(List<Product> products) {
+        List<ProductResponseDTO>  productDTOs = new ArrayList<>();
+        for (Product product : products) productDTOs.add(toDTO(product));
+        return productDTOs;
     }
 
     public static Product toModel(ProductRequestDTO productRequestDTO) {

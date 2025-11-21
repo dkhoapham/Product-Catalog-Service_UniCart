@@ -35,7 +35,7 @@ public class ProductController { //handle HTTP request&response
     @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(@Valid @RequestBody ProductRequestDTO productRequestDTO) {
         ProductResponseDTO productResponseDTO = productService.createProduct(productRequestDTO);
-        URI location = URI.create("/products/" + productResponseDTO.getProductId());
+        URI location = URI.create("/products" + productResponseDTO.getProductId());
         return ResponseEntity.created(location).body(productResponseDTO); //status 201
     }
 
@@ -44,6 +44,13 @@ public class ProductController { //handle HTTP request&response
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable String productId) {
         ProductResponseDTO product = productService.getById(productId);
         return ResponseEntity.ok(product);
+    }
+
+    // GET batch of product
+    @GetMapping("/products/batch")
+    public ResponseEntity<List<ProductResponseDTO>> getProductsBatch(@RequestParam(required = false) List<String> ids) {
+        List<ProductResponseDTO> customers = productService.getBatchByIds(ids);
+        return ResponseEntity.ok(customers);
     }
     
 }
