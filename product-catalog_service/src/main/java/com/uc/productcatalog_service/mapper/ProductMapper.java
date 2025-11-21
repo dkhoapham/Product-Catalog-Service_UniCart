@@ -5,7 +5,6 @@ import com.uc.productcatalog_service.dto.ProductResponseDTO;
 import com.uc.productcatalog_service.model.Product;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class ProductMapper {
     public static ProductResponseDTO toDTO(Product product) {

@@ -30,6 +30,13 @@ public class ProductController { //handle HTTP request&response
         return ResponseEntity.ok().body(productResponseDTOS);
     }
 
+    // GET single product by ID
+    @GetMapping("/products/{productId}")
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable String productId) {
+        ProductResponseDTO productResponseDTO = productService.getProductById(productId);
+        return ResponseEntity.ok().body(productResponseDTO); //Status 200
+    }
+
     // POST a product
     @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(@Valid @RequestBody ProductRequestDTO productRequestDTO) {

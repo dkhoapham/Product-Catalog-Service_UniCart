@@ -1,0 +1,8 @@
+### GET Product by ID
+GET http://localhost:8080/api/products/{productId}
+Accept: application/json
+
+### Example: Replace {productId} with an actual product ID
+# GET http://localhost:8080/api/products/YOUR_PRODUCT_ID_HERE
+# Accept: application/json
+
