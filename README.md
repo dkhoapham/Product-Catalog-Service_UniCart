@@ -59,8 +59,21 @@ This service is consumed by other services such as **Shopping Cart, Order, Revie
 ---
 
 ## Project Structure
-src/ ├─ main/java/com/uc/productcatalog_service/ │ ├─ controller/ # REST controllers │ ├─ dto/ # Request/Response DTOs │ ├─ exception/ # Custom exceptions (e.g. ProductNotFoundException) │ ├─ mapper/ # Converters between entities and DTOs │ ├─ model/ # Entities │ ├─ repository/ # JPA repositories │ ├─ service/ # Business logic │ └─ ProductCatalogServiceApplication.java # Spring Boot entry point └─ resources/ ├─ application.properties # Configuration └─ data.sql # Test seed data
-
+<pre>
+src/
+ ├─ main/java/com/uc/productcatalog_service/
+ │   ├─ controller/                            # REST controllers
+ │   ├─ dto/                                   # Request/Response DTOs
+ │   ├─ exception                              # Custom exceptions
+ │   ├─ mapper/                                # Converters between entities and DTOs
+ │   ├─ model/                                 # Entities
+ │   ├─ repository/                            # JPA repositories
+ │   ├─ service/                               # Business logic
+ │   └─ ProductCatalogServiceApplication.java  # Spring Boot entry point
+ └─ resources/
+     ├─ application.properties                 # Configuration
+     └─ data.sql                               # Seed/test data
+</pre>
 ---
 
 ### Prerequisites
