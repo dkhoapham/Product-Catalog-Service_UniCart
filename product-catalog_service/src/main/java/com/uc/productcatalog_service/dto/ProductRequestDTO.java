@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRequestDTO { //POST
@@ -62,6 +63,10 @@ public class ProductRequestDTO { //POST
     }
 
     public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
+    if (imageUrls == null) {
+        this.imageUrls = new ArrayList<>();
+    } else {
+        this.imageUrls = new ArrayList<>(imageUrls);
     }
+}
 }
