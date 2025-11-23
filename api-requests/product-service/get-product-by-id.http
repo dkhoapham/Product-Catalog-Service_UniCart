@@ -1,5 +1,5 @@
 ### GET Product by ID
-GET http://localhost:4000/api/products/prod_14
+GET http://localhost:4000/api/products/prod_21
 Accept: application/json
 
 ### Example: Replace {productId} with an actual product ID

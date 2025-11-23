@@ -65,7 +65,8 @@ VALUES ('Smart Doorbell', 'Video doorbell with motion detection', 179.99, 'Home'
 -- =========================
 -- Product Image URLs
 -- =========================
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (1, 'https://example.com/images/trackit1.png');
+INSERT INTO product_image_urls (product_id, image_urls) VALUES (1, 'https://example.com/images/trackit1.png'),
+                                                               (1, 'https://example.com/images/trackit2.png');
 INSERT INTO product_image_urls (product_id, image_urls) VALUES (2, 'https://example.com/images/lamp1.png');
 INSERT INTO product_image_urls (product_id, image_urls) VALUES (3, 'https://example.com/images/headphones1.png');
 INSERT INTO product_image_urls (product_id, image_urls) VALUES (4, 'https://example.com/images/mouse1.png');

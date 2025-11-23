@@ -6,12 +6,13 @@ import com.uc.productcatalog_service.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/products")
 public class ProductController { //handle HTTP request&response
     private final ProductService productService;
 
@@ -20,7 +21,7 @@ public class ProductController { //handle HTTP request&response
     }
 
     // GET all products
-    @GetMapping("/products")
+    @GetMapping
     public ResponseEntity<List<ProductResponseDTO>> getProducts(@RequestParam(required = false) String category) {
         if (category == null) { // return all products w/out filter
             List<ProductResponseDTO> productResponseDTOS = productService.getProducts();
@@ -33,27 +34,34 @@ public class ProductController { //handle HTTP request&response
     // POST a product
     @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(@Valid @RequestBody ProductRequestDTO productRequestDTO) {
+
         ProductResponseDTO productResponseDTO = productService.createProduct(productRequestDTO);
-        URI location = URI.create("/products" + productResponseDTO.getProductId());
-        return ResponseEntity.created(location).body(productResponseDTO); //status 201
+        // Build Location: /api/products/{id}
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()               // /api/products
+                .path("/{id}")                      // append /{id}
+                .buildAndExpand(productResponseDTO.getProductId())
+                .toUri();
+        return ResponseEntity.created(location).body(productResponseDTO); // status 201
     }
 
+
     // GET single product by ID
-    @GetMapping("/products/{productId}")
+    @GetMapping("/{productId}")
     public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable String productId) {
         ProductResponseDTO product = productService.getById(productId);
         return ResponseEntity.ok(product);
     }
 
     // GET batch of product
-    @GetMapping("/products/batch")
+    @GetMapping("/batch")
     public ResponseEntity<List<ProductResponseDTO>> getProductsBatch(@RequestParam(required = false) List<String> ids) {
         List<ProductResponseDTO> customers = productService.getBatchByIds(ids);
         return ResponseEntity.ok(customers);
     }
 
     // PUT update a product by ID (Admin)
-    @PutMapping("/products/{productId}")
+    @PutMapping("/{productId}")
     public ResponseEntity<ProductResponseDTO> updateProduct(
             @PathVariable String productId,
             @Valid @RequestBody ProductRequestDTO productRequestDTO) {

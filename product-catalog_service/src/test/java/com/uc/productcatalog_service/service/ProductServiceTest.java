@@ -36,15 +36,6 @@ public class ProductServiceTest {
         // prevent null imageUrls (fix for NPE)
         product.setImageUrls(new ArrayList<>());
 
-        // use reflection to set the private 'id' field
-        try {
-            var idField = Product.class.getDeclaredField("id");
-            idField.setAccessible(true);
-            idField.set(product, "11111111-1111-1111-1111-111111111111");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
         product.setName("TrackIt Planner");
         product.setDescription("A productivity planner app");
         product.setPrice(new BigDecimal("19.99"));
