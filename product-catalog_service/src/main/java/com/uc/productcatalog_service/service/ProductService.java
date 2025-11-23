@@ -67,4 +67,26 @@ public class ProductService { // business logic
         List<Product> products = productRepository.findAllById(ids);
         return ProductMapper.toDTOs(products);
     }
+
+    // PUT update product by ID
+    public ProductResponseDTO updateProduct(String prefixedId, ProductRequestDTO productRequestDTO) {
+        Integer id = Integer.parseInt(prefixedId.replace("prod_", ""));
+        Product existingProduct = productRepository.findById(id)
+            .orElseThrow(() -> new ProductNotFoundException(prefixedId));
+        
+        // Update the product fields
+        existingProduct.setName(productRequestDTO.getProductName());
+        existingProduct.setDescription(productRequestDTO.getProductDescription());
+        existingProduct.setPrice(new java.math.BigDecimal(productRequestDTO.getProductPrice()));
+        existingProduct.setCategory(productRequestDTO.getProductCategory());
+        
+        // Clear and set new image URLs
+        if (existingProduct.getImageUrls() != null) {
+            existingProduct.getImageUrls().clear();
+        }
+        existingProduct.setImageUrls(productRequestDTO.getImageUrls());
+        
+        Product updatedProduct = productRepository.save(existingProduct);
+        return ProductMapper.toDTO(updatedProduct);
+    }
 }
