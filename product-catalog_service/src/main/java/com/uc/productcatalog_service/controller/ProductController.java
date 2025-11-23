@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 import java.net.URI;
 import java.util.List;
 
@@ -51,6 +50,15 @@ public class ProductController { //handle HTTP request&response
     public ResponseEntity<List<ProductResponseDTO>> getProductsBatch(@RequestParam(required = false) List<String> ids) {
         List<ProductResponseDTO> customers = productService.getBatchByIds(ids);
         return ResponseEntity.ok(customers);
+    }
+
+    // PUT update a product by ID (Admin)
+    @PutMapping("/products/{productId}")
+    public ResponseEntity<ProductResponseDTO> updateProduct(
+            @PathVariable String productId,
+            @Valid @RequestBody ProductRequestDTO productRequestDTO) {
+        ProductResponseDTO updatedProduct = productService.updateProduct(productId, productRequestDTO);
+        return ResponseEntity.ok(updatedProduct);
     }
     
 }
