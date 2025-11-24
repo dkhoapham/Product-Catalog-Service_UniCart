@@ -1,0 +1,4 @@
+### PUT Product by ID
+PUT http://localhost:4000/api/products/prod_21
+
+###
