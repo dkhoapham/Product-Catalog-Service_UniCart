@@ -1,5 +1,5 @@
 ### Update Product (PUT)
-PUT http://localhost:4000/api/products/prod_23
+PUT http://localhost:4000/api/products/prod_21
 Content-Type: application/json
 
 {
