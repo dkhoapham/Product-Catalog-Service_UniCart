@@ -86,7 +86,7 @@ public class ProductServiceTest {
         ProductRequestDTO updateRequest = new ProductRequestDTO();
         updateRequest.setProductName("Updated Product Name");
         updateRequest.setProductDescription("Updated Description");
-        updateRequest.setProductPrice("199.99");
+        updateRequest.setProductPrice(BigDecimal.valueOf(199.99));
         updateRequest.setProductCategory("Updated Category");
         updateRequest.setImageUrls(Arrays.asList("new-image1.jpg", "new-image2.jpg"));
 
@@ -113,7 +113,7 @@ public class ProductServiceTest {
         ProductRequestDTO updateRequest = new ProductRequestDTO();
         updateRequest.setProductName("Updated Product");
         updateRequest.setProductDescription("Updated Description");
-        updateRequest.setProductPrice("199.99");
+        updateRequest.setProductPrice(BigDecimal.valueOf(199.99));
         updateRequest.setProductCategory("Updated Category");
         updateRequest.setImageUrls(Arrays.asList("image.jpg"));
 
@@ -148,7 +148,7 @@ public class ProductServiceTest {
         ProductRequestDTO updateRequest = new ProductRequestDTO();
         updateRequest.setProductName("New Name");
         updateRequest.setProductDescription("New Description");
-        updateRequest.setProductPrice("75.50");
+        updateRequest.setProductPrice(BigDecimal.valueOf(75.50));
         updateRequest.setProductCategory("New Category");
         updateRequest.setImageUrls(Arrays.asList("new1.jpg", "new2.jpg", "new3.jpg"));
 

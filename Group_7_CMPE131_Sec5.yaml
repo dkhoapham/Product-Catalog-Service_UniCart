@@ -96,37 +96,64 @@ components:
   schemas:
     Product:
       type: object
+      required:
+        - productId
+        - productName
+        - productDescription
+        - productPrice
+        - productCategory
+        - imageUrls
+        - primaryImageUrl
       properties:
         productId:
           type: string
+          pattern: '^(prod_)?\d+$'
         productName:
           type: string
+          maxLength: 255
         productDescription:
           type: string
         productPrice:
           type: number
+          minimum: 0
+          multipleOf: 0.01
         productCategory:
           type: string
+          maxLength: 64
         imageUrls:
           type: array
+          minItems: 1
           items:
             type: string
             format: uri
+        primaryImageUrl:
+          type: string
+          format: uri
+
     ProductInput:
       type: object
+      required:
+        - productName
+        - productDescription
+        - productPrice
+        - productCategory
+        - imageUrls
       properties:
         productName:
           type: string
+          maxLength: 255
         productDescription:
           type: string
         productPrice:
           type: number
+          minimum: 0
+          multipleOf: 0.01
         productCategory:
           type: string
+          maxLength: 64
         imageUrls:
           type: array
+          minItems: 1
           items:
             type: string
             format: uri
-
-  

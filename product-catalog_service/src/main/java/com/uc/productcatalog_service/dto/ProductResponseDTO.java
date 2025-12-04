@@ -1,5 +1,6 @@
 package com.uc.productcatalog_service.dto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +8,10 @@ public class ProductResponseDTO { //GET
     private String productId;
     private String productName;
     private String productDescription;
-    private String productPrice;
+    private BigDecimal productPrice;
     private String productCategory;
     private List<String> imageUrls;
+    private String primaryImageUrl;
 
     public String getProductId() {
         return productId;
@@ -35,11 +37,11 @@ public class ProductResponseDTO { //GET
         this.productDescription = productDescription;
     }
 
-    public String getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -58,5 +60,13 @@ public class ProductResponseDTO { //GET
     public void setImageUrls(List<String> imageUrls) {
         if(this.imageUrls == null) this.imageUrls = new ArrayList<>();
         this.imageUrls.addAll(imageUrls);
+    }
+
+    public String getPrimaryImageUrl() {
+        return primaryImageUrl;
+    }
+
+    public void setPrimaryImageUrl(String primaryImageUrl) {
+        this.primaryImageUrl = primaryImageUrl;
     }
 }

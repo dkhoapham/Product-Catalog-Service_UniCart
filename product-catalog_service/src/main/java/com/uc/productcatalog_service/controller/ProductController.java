@@ -4,6 +4,7 @@ import com.uc.productcatalog_service.dto.ProductRequestDTO;
 import com.uc.productcatalog_service.dto.ProductResponseDTO;
 import com.uc.productcatalog_service.service.ProductService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -56,6 +57,7 @@ public class ProductController { //handle HTTP request&response
     // GET batch of product
     @GetMapping("/batch")
     public ResponseEntity<List<ProductResponseDTO>> getProductsBatch(@RequestParam(required = false) List<String> ids) {
+        @Size(max = 100, message = "Max 100 ids per request")
         List<ProductResponseDTO> customers = productService.getBatchByIds(ids);
         return ResponseEntity.ok(customers);
     }

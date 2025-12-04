@@ -1,9 +1,10 @@
 package com.uc.productcatalog_service.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +12,27 @@ public class ProductRequestDTO { //POST
 
     @NotBlank(message = "Product Name required")
     @Size(min = 1, max = 255)
+    @JsonProperty("productName")
     private String productName;
 
     @NotBlank(message = "Description of product required")
+    @JsonProperty("productDescription")
     private String productDescription;
 
-    @NotBlank(message = "Product Price required")
-    private String productPrice;
+    @NotNull(message = "Product Price required")
+    @DecimalMin(value = "0.00", message = "Price must be >= 0.00")
+    @Digits(integer = 10, fraction = 2)
+    @JsonProperty("productPrice")
+    private BigDecimal productPrice;
 
     @NotBlank(message = "Category of product required")
+    @Size(max = 64)
+    @JsonProperty("productCategory")
     private String productCategory;
 
-    @NotEmpty(message = "Image/s of product required")
-    private List<String> imageUrls;
-
+    @NotNull(message = "Image/s of product required")
+    @Size(min = 1, message = "At least one image URL is required")
+    private List<@URL(message = "Each image must be a valid URL") String> imageUrls = new ArrayList<>();
 
     public String getProductName() {
         return productName;
@@ -42,11 +50,11 @@ public class ProductRequestDTO { //POST
         this.productDescription = productDescription;
     }
 
-    public String getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -63,10 +71,6 @@ public class ProductRequestDTO { //POST
     }
 
     public void setImageUrls(List<String> imageUrls) {
-    if (imageUrls == null) {
-        this.imageUrls = new ArrayList<>();
-    } else {
-        this.imageUrls = new ArrayList<>(imageUrls);
+        this.imageUrls = (imageUrls == null) ? new ArrayList<>() : new ArrayList<>(imageUrls);
     }
-}
 }

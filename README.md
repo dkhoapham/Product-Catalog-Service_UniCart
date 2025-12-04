@@ -72,7 +72,10 @@ src/
  │   └─ ProductCatalogServiceApplication.java  # Spring Boot entry point
  └─ resources/
      ├─ application.properties                 # Configuration
-     └─ data.sql                               # Seed/test data
+     ├─ db/migration/
+         └─ V1_init.sql                        # Flyway schema deliverable
+     ├─ data.sql                               # Seed/test data
+     └─ db_schema.sql                          # schema
 </pre>
 ---
 
@@ -88,4 +91,9 @@ git clone https://github.com/your-org/product-catalog-service.git
 cd product-catalog-service
 
 # Build & run
+# from the project root
 ./mvnw spring-boot:run
+# on Windows
+mvnw.cmd spring-boot:run
+
+# Check application.properties for seed/schema
