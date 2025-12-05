@@ -1,4 +1,4 @@
 ### DELETE request to example server
 DELETE http://localhost:4000/api/products
 
-###
+### 204 for successfully wipe out the entire table!
