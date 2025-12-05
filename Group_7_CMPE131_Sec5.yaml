@@ -39,6 +39,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
+    delete:
+      summary: Delete all products
+      responses:
+        '204': { description: Deleted }
   /api/products/{id}:
     get:
       summary: Return a product by ID
@@ -92,6 +96,17 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
+  /api/products/{productId}:
+    delete:
+      summary: Delete a product by ID
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema: { type: string, pattern: "^(prod_)?\\d+$" }
+      responses:
+        '204': { description: Deleted }
+        '404': { description: Not found }
 components:
   schemas:
     Product:

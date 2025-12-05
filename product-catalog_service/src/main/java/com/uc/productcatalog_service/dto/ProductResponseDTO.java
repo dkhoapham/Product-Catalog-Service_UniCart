@@ -58,7 +58,7 @@ public class ProductResponseDTO { //GET
     }
 
     public void setImageUrls(List<String> imageUrls) {
-        if(this.imageUrls == null) this.imageUrls = new ArrayList<>();
+        if (this.imageUrls == null) this.imageUrls = new ArrayList<>();
         this.imageUrls.addAll(imageUrls);
     }
 

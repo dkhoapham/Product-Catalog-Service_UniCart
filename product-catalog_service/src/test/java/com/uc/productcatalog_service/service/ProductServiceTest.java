@@ -22,11 +22,12 @@ public class ProductServiceTest {
 
     private ProductRepository productRepository;
     private ProductService productService;
+    private jakarta.persistence.EntityManager em;
 
     @BeforeEach
     void setUp() {
         productRepository = Mockito.mock(ProductRepository.class);
-        productService = new ProductService(productRepository);
+        productService = new ProductService(productRepository, em);
     }
 
     @Test

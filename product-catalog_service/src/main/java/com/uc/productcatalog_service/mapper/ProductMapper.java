@@ -25,7 +25,7 @@ public class ProductMapper {
 
     public static List<ProductResponseDTO> toDTOs(List<Product> products) {
         if (products == null || products.isEmpty()) return List.of();
-        List<ProductResponseDTO>  productDTOs = new ArrayList<>();
+        List<ProductResponseDTO> productDTOs = new ArrayList<>();
         for (Product product : products) productDTOs.add(toDTO(product));
         return productDTOs;
     }

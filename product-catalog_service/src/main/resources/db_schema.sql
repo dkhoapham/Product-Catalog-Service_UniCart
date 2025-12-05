@@ -1,9 +1,12 @@
+-- H2 schema.sql (local dev)
+
 create table if not exists products
 (
     id
     integer
     generated
-    always as
+    by
+    default as
     identity
     primary
     key,
@@ -12,8 +15,8 @@ create table if not exists products
 (
     255
 ) not null,
-    description text not null,
-    price numeric
+    description clob not null,
+    price decimal
 (
     12,
     2
@@ -27,23 +30,21 @@ create table if not exists products
 (
     64
 ) not null,
-    created_at timestamptz not null default now
-(
-),
-    updated_at timestamptz not null default now
-(
-),
-    constraint chk_products_name_not_blank check
+    created_at timestamp not null default current_timestamp,
+    updated_at timestamp not null default current_timestamp,
+    constraint chk_products_name_not_blank
+    check
 (
     length (
-    btrim
+    trim
 (
     name
 )) > 0),
-    constraint chk_products_category_not_blank check
+    constraint chk_products_category_not_blank
+    check
 (
     length (
-    btrim
+    trim
 (
     category
 )) > 0)
@@ -54,23 +55,29 @@ create table if not exists product_images
     product_id
     integer
     not
-    null
-    references
-    products
-(
-    id
-) on delete cascade,
-    url varchar
+    null,
+    url
+    varchar
 (
     1024
 ) not null,
     position integer not null default 0,
-    constraint chk_product_images_url_scheme check
+    constraint fk_product_images_product
+    foreign key
 (
-    url
-    ~
+    product_id
+) references products
+(
+    id
+) on delete cascade,
+    constraint chk_product_images_url_scheme
+    check
+(
+    regexp_like
+(
+    url,
     '^https?://'
-),
+)),
     primary key
 (
     product_id,
@@ -81,18 +88,4 @@ create table if not exists product_images
 create index if not exists idx_products_category on products(category);
 create index if not exists idx_images_product on product_images(product_id);
 
-create
-or replace function set_updated_at() returns trigger as $$
-begin
-  new.updated_at
-= now();
-return new;
-end;
-$$
-language plpgsql;
-
-drop trigger if exists trg_products_set_updated_at on products;
-create trigger trg_products_set_updated_at
-    before update
-    on products
-    for each row execute function set_updated_at();
+-- No trigger here (H2 doesn't support plpgsql). Let JPA @UpdateTimestamp handle updated_at.

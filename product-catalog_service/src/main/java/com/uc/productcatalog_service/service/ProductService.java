@@ -8,20 +8,22 @@ import com.uc.productcatalog_service.model.Product;
 import com.uc.productcatalog_service.repository.ProductRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService { // business logic
     private final ProductRepository productRepository;
+    private final jakarta.persistence.EntityManager em;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, jakarta.persistence.EntityManager em) {
         this.productRepository = productRepository;
+        this.em = em;
     }
 
     // GET all products
@@ -94,11 +96,12 @@ public class ProductService { // business logic
         existingProduct.setPrice(productRequestDTO.getProductPrice());
         existingProduct.setCategory(productRequestDTO.getProductCategory());
 
-        // reset images safely
-        existingProduct.setImageUrls(
-                productRequestDTO.getImageUrls() == null ? List.of() : productRequestDTO.getImageUrls()
-        );
-
+        // reset all images
+        List<String> newUrls = productRequestDTO.getImageUrls();
+        existingProduct.getImageUrls().clear();
+        if (newUrls != null) {
+            existingProduct.getImageUrls().addAll(newUrls);  // mutate managed collection
+        }
         Product updatedProduct = productRepository.save(existingProduct);
         return ProductMapper.toDTO(updatedProduct);
     }
@@ -135,5 +138,24 @@ public class ProductService { // business logic
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid price format");
         }
+    }
+
+    // Optional DELETE logics
+
+    // DELETE by id
+    public void deleteById(String prefixedId) {
+        Integer id = parseId(prefixedId);
+        if (!productRepository.existsById(id)) {
+            throw new ProductNotFoundException(prefixedId);
+        }
+        productRepository.deleteById(id);
+    }
+
+    // DELETE all
+    @Transactional
+    public void deleteAll() {
+        productRepository.deleteAllInBatch();
+        em.createNativeQuery("ALTER TABLE product ALTER COLUMN id RESTART WITH 1").executeUpdate();
+        // em.createNativeQuery("TRUNCATE TABLE product RESTART IDENTITY CASCADE;").executeUpdate(); // this for PostgreSQL
     }
 }

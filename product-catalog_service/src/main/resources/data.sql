@@ -65,24 +65,44 @@ VALUES ('Smart Doorbell', 'Video doorbell with motion detection', 179.99, 'Home'
 -- =========================
 -- Product Image URLs
 -- =========================
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (1, 'https://example.com/images/trackit1.png'),
-                                                               (1, 'https://example.com/images/trackit2.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (2, 'https://example.com/images/lamp1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (3, 'https://example.com/images/headphones1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (4, 'https://example.com/images/mouse1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (5, 'https://example.com/images/tracker1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (6, 'https://example.com/images/speaker1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (7, 'https://example.com/images/coffeemaker1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (8, 'https://example.com/images/desk1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (9, 'https://example.com/images/keyboard1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (10, 'https://example.com/images/smartwatch1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (11, 'https://example.com/images/yogamat1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (12, 'https://example.com/images/kettle1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (13, 'https://example.com/images/drone1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (14, 'https://example.com/images/ereader1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (15, 'https://example.com/images/airpurifier1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (16, 'https://example.com/images/thermostat1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (17, 'https://example.com/images/laptopstand1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (18, 'https://example.com/images/charger1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (19, 'https://example.com/images/vr1.png');
-INSERT INTO product_image_urls (product_id, image_urls) VALUES (20, 'https://example.com/images/doorbell1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (1, 'https://example.com/images/trackit1.png'),
+       (1, 'https://example.com/images/trackit2.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (2, 'https://example.com/images/lamp1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (3, 'https://example.com/images/headphones1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (4, 'https://example.com/images/mouse1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (5, 'https://example.com/images/tracker1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (6, 'https://example.com/images/speaker1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (7, 'https://example.com/images/coffeemaker1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (8, 'https://example.com/images/desk1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (9, 'https://example.com/images/keyboard1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (10, 'https://example.com/images/smartwatch1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (11, 'https://example.com/images/yogamat1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (12, 'https://example.com/images/kettle1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (13, 'https://example.com/images/drone1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (14, 'https://example.com/images/ereader1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (15, 'https://example.com/images/airpurifier1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (16, 'https://example.com/images/thermostat1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (17, 'https://example.com/images/laptopstand1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (18, 'https://example.com/images/charger1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (19, 'https://example.com/images/vr1.png');
+INSERT INTO product_image_urls (product_id, image_urls)
+VALUES (20, 'https://example.com/images/doorbell1.png');

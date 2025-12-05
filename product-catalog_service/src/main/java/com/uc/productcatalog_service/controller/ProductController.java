@@ -70,6 +70,22 @@ public class ProductController { //handle HTTP request&response
         ProductResponseDTO updatedProduct = productService.updateProduct(productId, productRequestDTO);
         return ResponseEntity.ok(updatedProduct);
     }
-    
+
+    // Optional API end points
+
+    // DELETE one product by id
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable String productId) {
+        productService.deleteById(productId);   // throws ProductNotFoundException if missing
+        return ResponseEntity.noContent().build(); // 204
+    }
+
+    // delete all product (dev/admin only)
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllProducts() {
+        productService.deleteAll();
+        return ResponseEntity.noContent().build(); // 204
+    }
+
 }
 

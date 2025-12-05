@@ -9,7 +9,11 @@ Content-Type: application/json
   "productCategory": "Electronics",
   "imageUrls": [
     "https://example.com/images/iPhone.png",
-    "https://example.com/images/iPhone1.png"
+    "https://example.com/images/iPhone1.png",
+    "https://example.com/images/iPhone2.png",
+    "https://example.com/images/iPhone3.png",
+    "https://example.com/images/iPhone4.png",
+    "https://example.com/images/iPhone5.png"
   ]
 }
 
