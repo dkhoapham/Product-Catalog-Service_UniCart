@@ -94,6 +94,8 @@ cd product-catalog-service
 
 # Build & run
 # from the project root
+# In terminal, cd product-catalog_service
+# Then:
 ./mvnw spring-boot:run
 # on Windows
 mvnw.cmd spring-boot:run
