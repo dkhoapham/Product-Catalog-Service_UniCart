@@ -1,4 +1,4 @@
--- H2 schema.sql (local dev)
+-- H2 db_schema.sql (local dev)
 
 create table if not exists products
 (
@@ -88,4 +88,4 @@ create table if not exists product_images
 create index if not exists idx_products_category on products(category);
 create index if not exists idx_images_product on product_images(product_id);
 
--- No trigger here (H2 doesn't support plpgsql). Let JPA @UpdateTimestamp handle updated_at.
+-- (H2 doesn't support plpgsql). JPA @UpdateTimestamp handle updated_at.

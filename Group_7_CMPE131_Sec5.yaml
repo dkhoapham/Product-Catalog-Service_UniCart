@@ -76,6 +76,16 @@ paths:
       responses:
         '200':
           description: Product updated successfully
+    delete:
+      summary: Delete a product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, pattern: "^(prod_)?\\d+$" }
+      responses:
+        '204': { description: Deleted }
+        '404': { description: Not found }
   /api/products/batch:
     get:
       summary: Return a batch of products by IDs
@@ -83,10 +93,14 @@ paths:
         - name: ids
           in: query
           required: false
+          style: form
+          explode: false
           schema:
             type: array
+            maxItems: 100
             items:
               type: string
+              pattern: '^(prod_)?\d+$'
       responses:
         '200':
           description: Batch of products
@@ -96,17 +110,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
-  /api/products/{productId}:
-    delete:
-      summary: Delete a product by ID
-      parameters:
-        - name: productId
-          in: path
-          required: true
-          schema: { type: string, pattern: "^(prod_)?\\d+$" }
-      responses:
-        '204': { description: Deleted }
-        '404': { description: Not found }
 components:
   schemas:
     Product:

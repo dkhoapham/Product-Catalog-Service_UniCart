@@ -1,4 +1,4 @@
 ### GET group of products by it category
 GET http://localhost:4000/api/products?category=Electronics
 
-###
+### 200 status, filter successfully.

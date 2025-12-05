@@ -15,4 +15,5 @@ Content-Type: application/json
     "https://example.com/images/iPhone5.png"
   ]
 }
-###
+
+### Tested, 201 for all field, 400 if any field missing!

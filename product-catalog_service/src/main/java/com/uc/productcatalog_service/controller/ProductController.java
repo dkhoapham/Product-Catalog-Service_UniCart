@@ -86,6 +86,5 @@ public class ProductController { //handle HTTP request&response
         productService.deleteAll();
         return ResponseEntity.noContent().build(); // 204
     }
-
 }
 
