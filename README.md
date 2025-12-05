@@ -33,13 +33,15 @@ This service is consumed by other services such as **Shopping Cart, Order, Revie
 
 ## Core API Endpoints
 
-| Method | Endpoint                    | Description                                                |
-|--------|-----------------------------|------------------------------------------------------------|
-| `GET`  | `/api/products`             | Returns all products, optional `?category=` filter         |
-| `POST` | `/api/products`             | (Admin) Create a new product                               |
-| `GET`  | `/api/products/{productId}` | Get details of a single product                            |
-| `PUT`  | `/api/products/{productId}` | (Admin) Update product details                             |
-| `GET`  | `/api/products/batch`       | Fetch multiple products by IDs (e.g. `?ids=prod_1,prod_2`) |
+| Method   | Endpoint                    | Description                                                |
+|----------|-----------------------------|------------------------------------------------------------|
+| `GET`    | `/api/products`             | Returns all products, optional `?category=` filter         |
+| `POST`   | `/api/products`             | (Admin) Create a new product                               |
+| `GET`    | `/api/products/{productId}` | Get details of a single product                            |
+| `PUT`    | `/api/products/{productId}` | (Admin) Update product details                             |
+| `GET`    | `/api/products/batch`       | Fetch multiple products by IDs (e.g. `?ids=prod_1,prod_2`) |
+| `DELETE` | `/api/products/{productId}` | (Admin) Delete a product by id                             |
+| `DELETE` | `/api/products/`            | (Admin) Delete all product by                              |
 
 ---
 
